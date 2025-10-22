@@ -22,7 +22,6 @@ public class RoleSeeder implements CommandLineRunner {
             seedRole(ERole.ROLE_ADMIN, "Administrator with full access");
             seedRole(ERole.ROLE_SELLER, "Seller can manage their shop and products");
             seedRole(ERole.ROLE_CUSTOMER, "Customer can browse and order products");
-            seedRole(ERole.ROLE_STAFF, "Staff can crud products");
             System.out.println("Seeded all roles because DB was empty");
         } else {
             System.out.println("Roles already exist, skipping seeding");
