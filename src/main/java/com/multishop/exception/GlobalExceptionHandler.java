@@ -36,7 +36,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<ApiResponse<String>> handleBusinessException(BusinessException ex) {
         return ResponseEntity.badRequest()
-                .body(ApiResponse.error(HttpStatus.BAD_REQUEST, ex.getMessage()));
+                .body(ApiResponse.error(HttpStatus.BAD_REQUEST, ex.getMessage(), null));
     }
 
     // Bắt các Exception chung
@@ -44,6 +44,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse<String>> handleGlobalException(RuntimeException ex) {
         log.error("Unhandled exception: ", ex);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(ApiResponse.error(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage()));
+                .body(ApiResponse.error(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), null));
     }
 }

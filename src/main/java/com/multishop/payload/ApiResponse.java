@@ -17,12 +17,8 @@ public class ApiResponse<T> {
 	private LocalDateTime timestamp;
 
 	// factory method tiện lợi
-	public static <T> ApiResponse<T> success(HttpStatus status, T data, String message) {
+	public static <T> ApiResponse<T> success(HttpStatus status, String message, T data) {
 		return new ApiResponse<>(status.value(), message, data, LocalDateTime.now());
-	}
-	
-	public static <T> ApiResponse<T> error(HttpStatus status, String message) {
-		return new ApiResponse<>(status.value(), message, null, LocalDateTime.now());
 	}
 	
 	public static <T> ApiResponse<T> error(HttpStatus status, String message, T data) {

@@ -11,9 +11,8 @@ import com.multishop.entity.Category;
 import com.multishop.repository.custom.CategoryRepositoryCustom;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Long>
-	, CategoryRepositoryCustom
-	, JpaSpecificationExecutor<Category> {
+public interface CategoryRepository
+		extends JpaRepository<Category, Long>, CategoryRepositoryCustom, JpaSpecificationExecutor<Category> {
 
 	// đã có sẵn
 	boolean existsByName(String name);
@@ -26,8 +25,5 @@ public interface CategoryRepository extends JpaRepository<Category, Long>
 
 	// tìm các category con của một parent
 	List<Category> findAllByParent_Id(Long parentId);
-	
-//	@EntityGraph(attributePaths = {"children", "children.children"})
-//    Page<Category> findAll(Specification<Category> spec, PageRequest pageRequest);
 
 }
