@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
@@ -32,7 +33,8 @@ import lombok.Setter;
 @Table(name = "shops")
 public class Shop extends Base {
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
     @Column(name = "shop_name")
     @NotNull

@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
@@ -20,7 +21,8 @@ import lombok.Setter;
 @Table(name = "return_order_items")
 public class ReturnOrderItem extends Base {
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
     @ManyToOne
     @JoinColumn(name = "return_order_id", nullable = false)

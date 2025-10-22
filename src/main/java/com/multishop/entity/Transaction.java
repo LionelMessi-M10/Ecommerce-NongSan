@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.math.BigDecimal;
 
 import com.multishop.enums.TransactionType;
@@ -17,7 +18,8 @@ import jakarta.persistence.Table;
 @Table(name = "transactions")
 public class Transaction extends Base {
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
     @ManyToOne
     @JoinColumn(name = "user_id")

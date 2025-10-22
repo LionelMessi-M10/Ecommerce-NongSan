@@ -12,7 +12,7 @@ import java.util.Optional;
 public class AuditingConfig {
 
     @Bean
-    public AuditorAware<String> auditorAware() {
+    AuditorAware<String> auditorAware() {
         return new AuditorAwareImpl();
     }
 

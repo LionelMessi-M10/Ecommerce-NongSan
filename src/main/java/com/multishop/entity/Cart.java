@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -19,8 +20,9 @@ import lombok.Setter;
 @Entity
 @Table(name = "carts")
 public class Cart extends Base {
-	
-	private static final long serialVersionUID = 1L;
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false, unique = true)

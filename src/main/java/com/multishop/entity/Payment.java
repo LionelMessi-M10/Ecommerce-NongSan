@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.math.BigDecimal;
 
 import com.multishop.enums.PaymentMethod;
@@ -26,7 +27,8 @@ import lombok.Setter;
 @Table(name = "payments")
 public class Payment extends Base {
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
     @Column(name = "transaction_id", unique = true)
     private String transactionId; // Mã giao dịch thanh toán, nếu có

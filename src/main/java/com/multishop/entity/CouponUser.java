@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -20,7 +21,8 @@ import lombok.Setter;
 @Table(name = "user_coupons")
 public class CouponUser extends Base { // Coupon của người dùng
     
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
 	@ManyToOne
     @JoinColumn(name = "coupon_id", nullable = false)

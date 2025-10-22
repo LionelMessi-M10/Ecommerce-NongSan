@@ -3,7 +3,6 @@ package com.multishop.utils;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.UUID;
 
 import org.springframework.stereotype.Component;
@@ -22,7 +21,7 @@ public class UploadFile {
         }
 
         // Tạo thư mục đích nếu chưa tồn tại
-        Path folderPath = Paths.get(uploadDir, targetFolder);
+        Path folderPath = Path.of(uploadDir, targetFolder);
         if (!Files.exists(folderPath)) {
             Files.createDirectories(folderPath);
         }

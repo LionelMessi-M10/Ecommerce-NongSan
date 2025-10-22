@@ -6,11 +6,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+import java.io.Serial;
+
 @Entity
 @Table(name = "return_policies")
 public class ReturnPolicy extends Base {
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
 	@ManyToOne
     @JoinColumn(name = "shop_id", nullable = false)

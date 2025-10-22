@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
@@ -20,7 +21,8 @@ import lombok.Setter;
 @Table(name = "order_details")
 public class OrderDetail extends Base {
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
     @Column(name = "quantity", nullable = false)
     private Integer quantity;

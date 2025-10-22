@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,8 +26,9 @@ import lombok.Setter;
 @Entity
 @Table(name = "coupons")
 public class Coupon extends Base {
-	
-	private static final long serialVersionUID = 1L;
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @Column(name = "code", nullable = false, unique = true)
     private String code; // Ma giam gia

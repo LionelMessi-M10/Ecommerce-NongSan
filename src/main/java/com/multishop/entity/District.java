@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -17,8 +18,9 @@ import lombok.Setter;
 @Getter 
 @Setter
 public class District extends Base { // Quận, huyện
-	
-	private static final long serialVersionUID = 1L;
+    
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
 	@Column(name = "district_id")
 	private Integer districtId;

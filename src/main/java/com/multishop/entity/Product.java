@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
@@ -33,7 +34,8 @@ import lombok.Setter;
 @Table(name = "products")
 public class Product extends Base {
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
     @Column(name = "name", nullable = false)
     private String name;

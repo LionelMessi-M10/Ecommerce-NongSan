@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.math.BigDecimal;
 
 import com.multishop.enums.WalletTransactionStatus;
@@ -26,7 +27,8 @@ import lombok.Setter;
 @Table(name = "wallet_transactions")
 public class WalletTransaction extends Base { // Giao dịch ví
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
     @ManyToOne
     @JoinColumn(name = "wallet_id", nullable = false)

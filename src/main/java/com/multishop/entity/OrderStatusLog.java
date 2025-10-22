@@ -13,13 +13,16 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
+
 @Getter
 @Setter
 @Entity
 @Table(name = "order_status_logs")
 public class OrderStatusLog extends Base {
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
     @Lob
     @Column(name = "note", columnDefinition = "TEXT")

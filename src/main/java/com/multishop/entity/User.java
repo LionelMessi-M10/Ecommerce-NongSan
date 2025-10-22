@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -31,8 +32,9 @@ import lombok.Setter;
 @Entity
 @Table(name = "users")
 public class User extends Base {
-	
-	private static final long serialVersionUID = 1L;
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
 	@Column(name = "user_name", length = 255, nullable = false)
 	private String userName;

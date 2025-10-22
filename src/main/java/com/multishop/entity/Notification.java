@@ -15,6 +15,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serial;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,7 +25,8 @@ import lombok.Setter;
 @Table(name = "notifications")
 public class Notification extends Base {
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
     @ManyToOne
     @JoinColumn(name = "user_id")

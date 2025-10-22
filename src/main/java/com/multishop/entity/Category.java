@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,8 +24,9 @@ import lombok.Setter;
 @Entity
 @Table(name = "categories")
 public class Category extends Base {
-	
-	private static final long serialVersionUID = 1L;
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
 	@NotNull
 	@Column(name = "name", unique = true)

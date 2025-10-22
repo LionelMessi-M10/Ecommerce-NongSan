@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,7 +30,8 @@ import lombok.Setter;
 @Table(name = "return_orders")
 public class ReturnOrder extends Base { // Yêu cầu trả hàng/hoàn tiền
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)

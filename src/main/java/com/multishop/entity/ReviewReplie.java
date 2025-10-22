@@ -7,11 +7,14 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+import java.io.Serial;
+
 @Entity
 @Table(name = "review_replies")
 public class ReviewReplie extends Base { // Phan hoi danh gia
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
 	@ManyToOne
 	@JoinColumn(name = "review_id", nullable = false)

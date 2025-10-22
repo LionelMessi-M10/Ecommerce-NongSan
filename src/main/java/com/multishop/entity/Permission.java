@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.util.Set;
 
 import com.multishop.enums.PermissionScope;
@@ -24,7 +25,8 @@ import lombok.Setter;
 @Table(name = "permissions")
 public class Permission extends Base {
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
     @Column(nullable = false, length = 100, unique = true)
     private String code; // Mã quyền, ví dụ: "CREATE_PRODUCT", "VIEW_ORDER"

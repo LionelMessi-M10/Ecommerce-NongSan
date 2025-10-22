@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.math.BigDecimal;
 
 import com.multishop.enums.ShippingMethod;
@@ -24,7 +25,8 @@ import lombok.Setter;
 @Table(name = "shippings")
 public class Shipping extends Base {
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
     @OneToOne
     @JoinColumn(name = "order_id")

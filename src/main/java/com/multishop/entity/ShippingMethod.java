@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.math.BigDecimal;
 import java.util.Set;
 
@@ -21,7 +22,8 @@ import lombok.Setter;
 @Table(name = "shipping_methods")
 public class ShippingMethod extends Base { // Phương thức vận chuyển
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
     @Column(name = "name", length = 100, nullable = false, unique = true)
     private String name; // ví dụ: "Giao hàng Tiết kiệm", "Giao hàng Nhanh"

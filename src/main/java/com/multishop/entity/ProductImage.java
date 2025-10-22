@@ -11,14 +11,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serial;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "product_images")
 @Getter @Setter
 public class ProductImage extends Base {
-	
-	private static final long serialVersionUID = 1L;
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
 	@Column(name = "image_url")
     private String imageUrl;

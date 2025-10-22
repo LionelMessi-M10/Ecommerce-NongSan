@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -23,7 +24,8 @@ import lombok.Setter;
 @Table(name = "wallets")
 public class Wallet extends Base { // Ví điện tử, nếu có
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false, unique = true)

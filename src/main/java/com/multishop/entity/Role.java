@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.util.Set;
 
 import com.multishop.enums.ERole;
@@ -25,7 +26,8 @@ import lombok.Setter;
 @Table(name = "roles")
 public class Role extends Base {
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, unique = true)

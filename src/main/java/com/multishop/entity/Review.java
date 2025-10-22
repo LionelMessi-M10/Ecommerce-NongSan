@@ -1,5 +1,6 @@
 package com.multishop.entity;
 
+import java.io.Serial;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -18,8 +19,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Review extends Base {
-	
-	private static final long serialVersionUID = 1L;
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)

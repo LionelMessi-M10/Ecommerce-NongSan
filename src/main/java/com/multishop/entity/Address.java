@@ -16,6 +16,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serial;
+
 @Getter 
 @Setter
 @NoArgsConstructor
@@ -23,8 +25,9 @@ import lombok.Setter;
 @Entity
 @Table(name = "addresses")
 public class Address extends Base {
-	
-	private static final long serialVersionUID = 1L;
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
 	@Column(name = "receiver_name", length = 100)
 	private String receiveName;

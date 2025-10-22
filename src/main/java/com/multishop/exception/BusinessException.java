@@ -1,8 +1,11 @@
 package com.multishop.exception;
 
+import java.io.Serial;
+
 public class BusinessException extends RuntimeException {
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
 	public BusinessException(String message) {
 		super(message);

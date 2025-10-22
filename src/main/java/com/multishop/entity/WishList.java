@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serial;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -19,8 +21,9 @@ import lombok.Setter;
     @UniqueConstraint(columnNames = {"user_id", "product_id"})
 })
 public class WishList extends Base {
-	
-	private static final long serialVersionUID = 1L;
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 	
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "user_id", nullable = false)
