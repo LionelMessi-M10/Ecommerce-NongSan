@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head
+	th:replace="web/layout/header :: header(title='MultiShop - Register')">
+</head>
+
+<body>
+	<!-- Topbar Start -->
+	<div th:replace="web/layout/topbar :: topbar"></div>
+	<!-- Topbar End -->
+
+
+	<!-- Navbar Start -->
+	<div th:replace="web/layout/navbar :: navbar"></div>
+	<!-- Navbar End -->
+
+
+	<!-- Form register Start -->
+	<div class="container w-25">
+		<h2 class="text-center">Register</h2>
+		<form th:action="@{/shop/register}" method="POST" th:object="${user}"
+			id="registrationForm">
+
+			<div class="row">
+				<div class="col">
+					<!-- First name input -->
+					<div class="form-outline mb-4">
+						<label class="form-label" for="fullName">Full Name</label> 
+						<input type="text" id="fullName" name="fullName" class="form-control" th:field="*{fullName}" />
+						<div class="invalid-feedback">Vui lòng nhập họ và tên.</div>
+					</div>
+				</div>
+
+				<div class="col">
+					<!-- Last name input -->
+					<div class="form-outline mb-4">
+						<label class="form-label" for="telephone">Telephone</label> <input
+							type="number" id="telephone" name="telephone" class="form-control" th:field="*{telephone}" />
+						<div class="invalid-feedback">Vui lòng nhập số điện thoại.</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Email input -->
+			<div class="form-outline mb-4">
+				<label class="form-label" for="email">Email</label> <input
+					type="email" id="email" name="email" class="form-control" th:field="*{email}" />
+				<div class="invalid-feedback">Vui lòng nhập địa chỉ email
+					đúng.</div>
+			</div>
+
+			<div class="row">
+				<!-- Password input -->
+				<div class="col">
+					<div class="form-outline mb-4">
+						<label class="form-label" for="password">Password</label> <input
+							type="password" id="password" name="password"
+							class="form-control" th:field="*{password}" />
+						<div class="invalid-feedback">Vui lòng nhập mật khẩu.</div>
+					</div>
+				</div>
+
+				<!-- Confirm password input -->
+				
+				<!-- 
+				<div class="col">
+					<div class="form-outline mb-4">
+						<label class="form-label" for="confirmPassword">Confirm
+							Password</label> <input type="password" id="confirmPassword"
+							name="confirmPassword" class="form-control" th:field="*{confirmPassword}" />
+						<div class="invalid-feedback">Mật khẩu không khớp.</div>
+					</div>
+				</div>
+				 -->
+			</div>
+
+			<!-- Gender radio -->
+			<div class="form-outline mb-3">
+				<div class="row">
+					<div class="col-6">
+						<label class="form-check-label mb-2">Gender</label>
+						<div class="row">
+							<div class="col-4">
+								<div class="form-check">
+									<input class="form-check-input" type="radio" id="male"
+										name="gender" value="1" th:field="*{gender}" /> <label class="form-check-label"
+										for="male">Male</label>
+								</div>
+							</div>
+							<div class="col-8">
+								<div class="form-check">
+									<input class="form-check-input" type="radio" id="female"
+										name="gender" value="0" th:field="*{gender}" /> <label
+										class="form-check-label" for="female">Female</label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-6">
+						<label class="form-check-label mb-2">Role</label>
+						<div class="row">
+							<div class="col-6">
+								<div class="form-check">
+									<input class="form-check-input" type="radio" id="customer"
+										name="role" value="1" th:field="*{roleId}" /> <label
+										class="form-check-label" for="customer">Customer</label>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="form-check">
+									<input class="form-check-input" type="radio" id="seller"
+										name="role" value="2" th:field="*{roleId}" /> <label class="form-check-label"
+										for="seller">Seller</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Checkbox for newsletter -->
+			<div class="form-check mb-4 subscribe" style="display: none;">
+				<input class="form-check-input" type="checkbox" id="subscribe" /> <label
+					class="form-check-label" for="subscribe">Subscribe to our
+					newsletter</label>
+			</div>
+
+			<!-- Spam protection -->
+			<div class="row">
+				<div class="col">
+					<div class="g-recaptcha" data-sitekey="your_site_key"></div>
+				</div>
+			</div>
+
+			<!-- Submit button -->
+			<button type="submit" class="btn btn-primary btn-block mb-4">Sign up</button>
+
+		</form>
+
+
+	</div>
+	<!-- Form register End -->
+
+
+	<!-- Footer Start -->
+	<div th:replace="web/layout/footer :: footer"></div>
+	<!-- Footer End -->
+
+
+	<!-- Back to Top -->
+	<a href="#" class="btn btn-primary back-to-top"><i
+		class="fa fa-angle-double-up"></i></a>
+
+
+	<!-- JavaScript Libraries -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+	<script src="/web/lib/easing/easing.min.js"></script>
+	<script src="/web/lib/owlcarousel/owl.carousel.min.js"></script>
+
+	<!-- Contact Javascript File -->
+	<script src="/web/mail/jqBootstrapValidation.min.js"></script>
+	<script src="/web/mail/contact.js"></script>
+
+	<!-- Template Javascript -->
+	<script src="/web/js/main.js"></script>
+	<script src="/web/js/validate-form.js"></script>
+
+
+</body>
+
+</html>

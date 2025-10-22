@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đơn hàng MultiShop</title>
+</head>
+<body style="font-family: Arial, sans-serif;">
+<h2>🛍 Cảm ơn bạn đã đặt hàng tại <strong>MultiShop</strong>!</h2>
+<p><strong>Mã đơn hàng:</strong> <span th:text="${orderId}"></span></p>
+<p><strong>Ngày đặt:</strong> <span th:text="${orderDate}"></span></p>
+<p><strong>Tổng tiền:</strong> <span th:text="${total}"></span> VND</p>
+<p>Hóa đơn được đính kèm trong email này. Vui lòng kiểm tra tệp PDF.</p>
+<p>Trân trọng,</p>
+<p><b>Đội ngũ MultiShop</b></p>
+</body>
+</html>

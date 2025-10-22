@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head
+	th:replace="web/layout/header :: header(title='MultiShop - Login')"></head>
+
+<body class="light-theme">
+	<!-- Topbar Start -->
+	<div th:replace="web/layout/topbar :: topbar"></div>
+	<!-- Topbar End -->
+
+
+	<!-- Navbar Start -->
+	<div th:replace="web/layout/navbar :: navbar"></div>
+	<!-- Navbar End -->
+
+
+	<!-- Form login Start -->
+	<div class="toast-container" id="toast-container"></div>
+
+	<div class="container w-25">
+		<h6 id="errorMessage" class="text-center" style="color: red;"
+			th:text="${param.error} ? 'Username or Password is incorrect. Login again !' : ''"></h6>
+		<h2 class="text-center">Login</h2>
+		<form th:action="@{/authenticateTheUser}" method="POST" id="loginForm">
+			<!-- Email input -->
+			<div data-mdb-input-init class="form-outline mb-4">
+				<label class="form-label" for="email">Email</label> <input
+					type="email" id="email" class="form-control" name="username" />
+				<div class="invalid-feedback">Vui lòng nhập địa chỉ email hợp
+					lệ.</div>
+			</div>
+
+			<!-- Password input -->
+			<div data-mdb-input-init class="form-outline mb-4">
+				<label class="form-label" for="password">Password</label> <input
+					type="password" id="password" class="form-control" name="password" />
+				<div class="invalid-feedback">Vui lòng nhập mật khẩu.</div>
+			</div>
+
+			<!-- 2 column grid layout for inline styling -->
+			<div class="row mb-4">
+				<div class="col d-flex justify-content-center">
+					<!-- Checkbox -->
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" value=""
+							id="rememberMe" /> <label class="form-check-label"
+							for="rememberMe"> Remember me </label>
+					</div>
+				</div>
+
+				<div class="col">
+					<!-- Simple link -->
+					<a href="#">Forgot password?</a>
+				</div>
+			</div>
+
+			<!-- Submit button -->
+			<button type="submit" class="btn btn-primary btn-block mb-4">Sign
+				in</button>
+
+			<!-- Register buttons -->
+			<div class="text-center">
+				<p>
+					Not a member? <a href="/shop/register">Register</a>
+				</p>
+				<p>or sign up with:</p>
+
+				<button type="button" class="btn btn-link btn-floating mx-1">
+					<i class="fab fa-google"></i>
+				</button>
+
+				<button type="button" class="btn btn-link btn-floating mx-1">
+					<i class="fab fa-facebook-f"></i>
+				</button>
+			</div>
+		</form>
+
+		<div style="text-align: center; margin-top: 150px;">
+			<button
+				onclick="showToast('Thành công! Dữ liệu đã được lưu.', 'success')">✅
+				Thành công</button>
+			<button onclick="showToast('Có lỗi xảy ra trong hệ thống!', 'error')">❌
+				Lỗi</button>
+			<button
+				onclick="showToast('Cảnh báo: Kiểm tra lại thông tin.', 'warning')">⚠️
+				Cảnh báo</button>
+			<button
+				onclick="showToast('Thông tin: Bạn có bản cập nhật mới.', 'info')">ℹ️
+				Thông tin</button>
+		</div>
+	</div>
+	<!-- Form login End -->
+
+
+	<!-- Footer Start -->
+	<div th:replace="web/layout/footer :: footer"></div>
+	<!-- Footer End -->
+
+
+	<!-- Back to Top -->
+	<a href="#" class="btn btn-primary back-to-top"><i
+		class="fa fa-angle-double-up"></i></a>
+
+
+	<!-- JavaScript Libraries -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+	<script src="/web/lib/easing/easing.min.js"></script>
+	<script src="/web/lib/owlcarousel/owl.carousel.min.js"></script>
+
+	<!-- Contact Javascript File -->
+	<script src="/web/mail/jqBootstrapValidation.min.js"></script>
+	<script src="/web/mail/contact.js"></script>
+
+	<!-- Template Javascript -->
+	<script src="/web/js/main.js"></script>
+	<script src="/web/js/custom.js"></script>
+
+	<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const emailFeedback = document.querySelector('#email ~ .invalid-feedback');
+        const passwordFeedback = document.querySelector('#password ~ .invalid-feedback');
+
+        // Function to clear all validation errors
+        function clearErrors() {
+            emailInput.classList.remove('is-invalid');
+            passwordInput.classList.remove('is-invalid');
+            emailFeedback.style.display = 'none';
+            passwordFeedback.style.display = 'none';
+        }
+
+        // Function to validate form fields
+        function validateForm() {
+            clearErrors();
+            let isValid = true;
+
+            // Validate email
+            if (!emailInput.value.trim() || !emailInput.checkValidity()) {
+                emailInput.classList.add('is-invalid');
+                emailFeedback.style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate password
+            if (!passwordInput.value.trim()) {
+                passwordInput.classList.add('is-invalid');
+                passwordFeedback.style.display = 'block';
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Add event listener for form submission
+        form.addEventListener('submit', (event) => {
+            if (!validateForm()) {
+                event.preventDefault(); // Prevent form submission if validation fails
+            }
+        });
+
+        // Add event listeners to clear error messages on input
+        [emailInput, passwordInput].forEach(input => {
+            input.addEventListener('input', () => {
+                if (input.value.trim() !== '') {
+                    input.classList.remove('is-invalid');
+                    const feedback = input.nextElementSibling;
+                    if (feedback && feedback.classList.contains('invalid-feedback')) {
+                        feedback.style.display = 'none';
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+
+</html>
