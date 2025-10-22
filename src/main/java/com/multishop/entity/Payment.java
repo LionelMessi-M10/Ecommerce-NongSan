@@ -11,7 +11,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -46,10 +45,6 @@ public class Payment extends Base {
     @Enumerated(EnumType.STRING)
     @Column(name = "payment_status", nullable = false)
     private PaymentStatus paymentStatus;
-
-    @Lob
-    @Column(name = "bank_response", columnDefinition = "TEXT")
-    private String bankResponse;
 
     @OneToOne
     @JoinColumn(name = "order_id", nullable = false)

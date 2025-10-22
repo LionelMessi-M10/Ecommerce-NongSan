@@ -47,7 +47,7 @@ public class Coupon extends Base {
     private BigDecimal maxOrderAmount; // giá trị tổi đa đơn hàng để áp dụng
 
     @Column(name = "usage_limit")
-    private Integer usageLimit; // Số lần sử dụng, nếu không có thì dngf vô hạn
+    private Integer usageLimit; // Số lần sử dụng, nếu không có thì dùng vô hạn
 
     @Column(name = "used_count")
     private Integer usedCount = 0; // Số lần sử dụng coupon

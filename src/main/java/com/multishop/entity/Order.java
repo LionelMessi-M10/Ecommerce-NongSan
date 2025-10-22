@@ -5,9 +5,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.multishop.enums.OrderStatus;
-import com.multishop.enums.PaymentMethod;
-import com.multishop.enums.PaymentStatus;
-import com.multishop.enums.ShippingMethod;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -51,30 +48,9 @@ public class Order extends Base {
     @Column(name = "order_status")
     private OrderStatus orderStatus; // Trạng thái đơn hàng: quy trình đặt, xử lý, giao hàng, huỷ đơn
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "payment_method")
-    private PaymentMethod paymentMethod; // Trạng thái của thanh toán: quá trình người mua trả tiền (Lúc người dùng đặt hàng)
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "payment_status")
-    private PaymentStatus paymentStatus; // Kết quả thanh toán của đơn hàng (Sau khi thanh toán hoằn tất hoặc thất bại)
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "shipping_method")
-    private ShippingMethod shippingMethod; // Cách đơn hàng được vận chuyển tới tay khách
-
-    @Column(name = "tracking_no", length = 100)
-    private String trackingNo; // Mã vận đơn
-
-    @Column(name = "note", length = 500)
-    private String note; // Ghi chú từ khách hàng
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-    @OneToMany(mappedBy = "order", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
-    private List<Payment> payments;
 
     @OneToMany(mappedBy = "order", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
     private List<OrderDetail> details;
@@ -82,6 +58,10 @@ public class Order extends Base {
     @OneToOne
     @JoinColumn(name = "shipping_address_id")
     private Address address;
+
+    @OneToOne
+    @JoinColumn(name = "payment_id", nullable = false)
+    private Payment payment;
 
     @OneToMany(mappedBy = "order", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
     private List<ReturnOrder> returnOrders;

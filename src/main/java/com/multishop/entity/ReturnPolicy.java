@@ -10,7 +10,7 @@ import java.io.Serial;
 
 @Entity
 @Table(name = "return_policies")
-public class ReturnPolicy extends Base {
+public class ReturnPolicy extends Base { // Chính sách bán hàng
 
     @Serial
     private static final long serialVersionUID = 1L;
