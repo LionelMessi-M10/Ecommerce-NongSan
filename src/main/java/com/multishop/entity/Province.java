@@ -13,21 +13,20 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "provinces")
-@Getter 
+@Getter
 @Setter
 public class Province extends Base { // Tỉnh, thành phố
 
-    @Serial
-    private static final long serialVersionUID = 1L;
-	
+	@Serial
+	private static final long serialVersionUID = 1L;
+
 	@Column(name = "province_id")
 	private Integer provinceId;
-	
+
 	@Column(name = "provice_name")
-    private String provinceName;
-	
-	@OneToMany(mappedBy = "province", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
+	private String provinceName;
+
+	@OneToMany(mappedBy = "province", cascade = { CascadeType.MERGE, CascadeType.PERSIST }, orphanRemoval = true)
 	private List<District> districts;
 
 }
-

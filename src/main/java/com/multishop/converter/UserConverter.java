@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.multishop.entity.Address;
 import com.multishop.entity.Role;
 import com.multishop.entity.User;
 import com.multishop.enums.AuthProvider;
@@ -35,8 +36,7 @@ public class UserConverter {
 
 		user.setPassword(byBCryptPasswordEncoder.encode(userRequest.getPassword()));
 
-		if (!userRequest.getProvider().isEmpty())
-			user.setProvider(AuthProvider.valueOf(userRequest.getProvideId()));
+		if (userRequest.getProvider() != null) user.setProvider(AuthProvider.valueOf(userRequest.getProvideId()));
 
 		Set<Role> roles = new HashSet<>();
 		if (userRequest.getRoleCode() != null && !userRequest.getRoleCode().isEmpty()) {
@@ -49,6 +49,10 @@ public class UserConverter {
 			roles.add(roleDefault);
 		}
 		user.setRoles(roles);
+
+		List<Address> addresses = new ArrayList<>();
+		userRequest.getAddresses().forEach(item -> addresses.add(addressConverter.convertToEntity(item)));
+		user.setAddresses(addresses);
 
 		return user;
 	}

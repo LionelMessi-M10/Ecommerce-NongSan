@@ -15,8 +15,8 @@ public class AddressDTO {
   private String addressDetail;
   private Boolean isDefault;
   private String addressType;
-  private String provinceName;
-  private String districtName;
-  private String wardName;
+  private Integer provinceId;
+  private Integer districtId;
+  private Integer wardId;
 
 }
