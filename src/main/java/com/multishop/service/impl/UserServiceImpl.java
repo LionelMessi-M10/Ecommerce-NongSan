@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
 		List<User> users = userRepository.findByStatus(status);
 		if (users != null && !users.isEmpty()) {
 			return users.stream()
-					.map(user -> new UserResponse(user.getId(), user.getUserName(), user.getEmail(), user.getStatus()))
+					.map(user -> userConverter.convertToResponse(user))
 					.toList();
 		}
 		return null;
@@ -52,6 +52,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Boolean checkExistUserByEmail(String email) {
 		return userRepository.findByEmail(email).isPresent();
+	}
+
+	@Transactional
+	@Override
+	public UserResponse updateProfile(UserRequest userRequest) {
+		User updateUser = userConverter.covertToEntity(userRequest);
+		userRepository.saveAndFlush(updateUser);
+		return userConverter.convertToResponse(updateUser);
 	}
 
 }

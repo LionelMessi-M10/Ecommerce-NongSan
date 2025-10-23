@@ -15,6 +15,7 @@ import com.multishop.model.request.UserRequest;
 import com.multishop.payload.ApiResponse;
 import com.multishop.security.CustomUserDetailsImpl;
 import com.multishop.security.JwtUtil;
+import com.multishop.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,8 +28,10 @@ public class AuthController {
   private final CustomUserDetailsImpl customUserDetailsImpl;
   private final JwtUtil jwtUtil;
 
+  private final UserService userService;
+
   @PostMapping("/login")
-  public ResponseEntity<?> login(@RequestBody AuthenticationRequest request) {
+  public ResponseEntity<?> login(@RequestBody(required = false) AuthenticationRequest request) {
     authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 
@@ -39,9 +42,19 @@ public class AuthController {
   }
 
   @PostMapping("/register")
-  public ResponseEntity<?> register(@RequestBody UserRequest userRequest) {
+  public ResponseEntity<?> register(@RequestBody(required = false) UserRequest userRequest) {
       
-      return null;
+      if(userService.checkExistUserByEmail(userRequest.getEmail())) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(
+          ApiResponse.error(HttpStatus.CONFLICT, "Email already exists", null)
+        );
+      }
+
+      userService.registerAccount(userRequest);
+
+      return ResponseEntity.status(HttpStatus.CREATED).body(
+        ApiResponse.success(HttpStatus.CREATED, "User registered successfully !", null)
+      );
   }
   
 

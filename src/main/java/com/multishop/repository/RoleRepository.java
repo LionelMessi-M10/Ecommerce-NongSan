@@ -9,8 +9,8 @@ import com.multishop.entity.Role;
 import com.multishop.enums.ERole;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role, Long>{
+public interface RoleRepository extends JpaRepository<Role, Long> {
 
     Optional<Role> findByCode(ERole code);
-    
+
 }

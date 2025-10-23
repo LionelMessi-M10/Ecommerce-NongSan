@@ -11,7 +11,10 @@ public interface UserService {
 	void registerAccount(UserRequest userRequest);
 
 	User getCurrentUser();
+
 	Boolean checkExistUserByEmail(String email);
 
 	List<UserResponse> findUsersByStatus(Byte status);
+
+	UserResponse updateProfile(UserRequest userRequest);
 }
