@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.multishop.converter.UserConverter;
@@ -22,6 +23,7 @@ public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
 	private final UserConverter userConverter;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Transactional
 	@Override
@@ -43,7 +45,7 @@ public class UserServiceImpl implements UserService {
 		List<User> users = userRepository.findByStatus(status);
 		if (users != null && !users.isEmpty()) {
 			return users.stream()
-					.map(user -> userConverter.convertToResponse(user))
+					.map(userConverter::convertToResponse)
 					.toList();
 		}
 		return null;

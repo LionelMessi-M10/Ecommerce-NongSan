@@ -22,7 +22,7 @@ public class UserResponse {
     private String phoneNumber;
     private String password;
     private Byte gender;
-    private String avartarUrl;
+    private String avatarUrl;
     private LocalDateTime dateOfBirth;
     private Boolean isEmailVerified;
     private Boolean isPhoneVerified;

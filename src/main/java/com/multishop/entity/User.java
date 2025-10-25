@@ -58,8 +58,8 @@ public class User extends Base {
 	@Column(name = "gender", length = 10)
 	private Byte gender;
 
-	@Column(name = "avartar_url")
-	private String avartarUrl;
+	@Column(name = "avatar_url")
+	private String avatarUrl;
 
 	@Column(name = "date_of_birth")
 	private LocalDateTime dateOfBirth;
@@ -70,7 +70,7 @@ public class User extends Base {
 	@Column(name = "is_phone_verified")
 	private Boolean isPhoneVerified = false; // Xác thực số điện thoại qua OTP
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
