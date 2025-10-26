@@ -63,7 +63,7 @@ public class CategoryServiceImpl implements CategoryService {
     /**
      * Cập nhật category đã có trong DB
      * 
-     * @param id Mã id của category trong DB
+     * @param categoryId Mã id của category trong DB
      * @param request CategoryRequest từ frontend gửi để thay đổi category có sẵn
      * @return Category được cập nhật
      */
