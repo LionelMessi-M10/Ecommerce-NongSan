@@ -15,12 +15,12 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/shops")
+@RequestMapping("/api/shops")
 public class ProductController {
 
 	private final ProductService productService;
 
-	@GetMapping("/product/{id}")
+	@GetMapping("/products/{id}")
 	public ResponseEntity<ApiResponse<ProductResponse>> getProductById(@PathVariable Long id) {
 		ProductResponse productResponse = productService.getProductById(id);
 

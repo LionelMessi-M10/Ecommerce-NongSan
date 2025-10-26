@@ -125,8 +125,8 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Page<CategoryResponse> searchBySpecification(CategorySearchCriteria criteria) {
         // Nếu pageNo < 0 thì reset về 0
-        Integer pageNo = (criteria.getPageNo() != null && criteria.getPageNo() >= 0) ? criteria.getPageNo() : 0;
-        Integer pageSize = (criteria.getPageSize() != null && criteria.getPageSize() > 0) ? criteria.getPageSize() : 10;
+        int pageNo = (criteria.getPageNo() != null && criteria.getPageNo() >= 0) ? criteria.getPageNo() : 0;
+        int pageSize = (criteria.getPageSize() != null && criteria.getPageSize() > 0) ? criteria.getPageSize() : 10;
 
         // Nếu criteria có sortBy + direction thì áp dụng, còn không thì default
         Sort sort = Sort.by("id").descending();

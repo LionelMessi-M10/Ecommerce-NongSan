@@ -17,6 +17,7 @@ public interface CategoryService {
 	CategoryResponse getById(Long id);
 
 	Page<CategoryResponse> getAll(CategorySearchCriteria categorySearchCriteria);
+
 	Page<CategoryResponse> searchBySpecification(CategorySearchCriteria criteria);
 	
 }

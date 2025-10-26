@@ -24,12 +24,12 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/shops")
+@RequestMapping("/api/shops")
 public class CategoryController {
 
 	private final CategoryService categoryService;
 
-	@GetMapping
+	@GetMapping("/categories")
 	public ResponseEntity<?> getAllCategories(@ModelAttribute CategorySearchCriteria categorySearchCriteria) {
 
 		Page<CategoryResponse> result = categoryService.getAll(categorySearchCriteria);
@@ -41,14 +41,8 @@ public class CategoryController {
 						result));
 	}
 
-	@GetMapping("/searchBySpecification")
-	public ResponseEntity<?> searchBySpecification(
-			@RequestBody(required = false) CategorySearchCriteria categorySearchCriteria) {
-
-		System.out.println("----------------------------------------------------");
-		System.out.println(categorySearchCriteria.getStatus());
-		System.out.println(categorySearchCriteria.getParentId());
-		System.out.println("----------------------------------------------------");
+	@GetMapping("/categories/searchBySpecification")
+	public ResponseEntity<?> searchBySpecification(@RequestBody(required = false) CategorySearchCriteria categorySearchCriteria) {
 
 		Page<CategoryResponse> result = categoryService.searchBySpecification(categorySearchCriteria);
 
@@ -60,26 +54,26 @@ public class CategoryController {
 						));
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/categories/{id}")
 	public ResponseEntity<?> getCategoryById(@PathVariable Long id) {
 		return ResponseEntity.ok(
 				ApiResponse.success(
 						HttpStatus.OK, "Found category by id: " + id, categoryService.getById(id)));
 	}
 
-	@PostMapping
+	@PostMapping("/categories")
 	public ResponseEntity<?> createCategory(@Valid @RequestBody CategoryRequest categoryRequest) {
 		CategoryResponse newCategory = categoryService.create(categoryRequest);
 		return ResponseEntity.ok(ApiResponse.success(HttpStatus.CREATED, "Create category successfully", newCategory));
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/categories/{id}")
 	public ResponseEntity<?> updateCategory(@PathVariable Long id, @Valid @RequestBody CategoryRequest categoryRequest) {
 		CategoryResponse updateCategory = categoryService.update(id, categoryRequest);
 		return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK, "Update category successfully", updateCategory));
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/categories/{id}")
 	public ResponseEntity<?> deleteCategory(@PathVariable Long id) {
 		CategoryResponse deleteCategory = categoryService.delete(id);
 		return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK, "Delete category successfully", deleteCategory));
