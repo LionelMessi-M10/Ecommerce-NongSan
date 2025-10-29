@@ -36,7 +36,7 @@ public class Product extends Base {
 
     @Serial
     private static final long serialVersionUID = 1L;
-	
+
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -58,9 +58,6 @@ public class Product extends Base {
 
     @Column(name = "stock")
     private Long stock; // Số lượng tồn kho
-
-    @Column(name = "brand")
-    private String brand; // Thương hiệu sản phẩm
 
     @Column(name = "sku", length = 100, unique = true)
     private String sku; // mã sản phẩm nội bộ
@@ -85,27 +82,27 @@ public class Product extends Base {
     @Column(name = "review_count")
     private Integer reviewCount = 0; // Số lượng người dùng review
 
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
+
     @ManyToMany
-    @JoinTable(
-        name = "product_categories",
-        joinColumns = @JoinColumn(name = "product_id"),
-        inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
+    @JoinTable(name = "product_categories", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
-    @OneToMany(mappedBy = "product", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
+    @OneToMany(mappedBy = "product", cascade = { CascadeType.MERGE, CascadeType.PERSIST }, orphanRemoval = true)
     private List<ProductImage> images;
 
-    @OneToMany(mappedBy = "product", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
+    @OneToMany(mappedBy = "product", cascade = { CascadeType.MERGE, CascadeType.PERSIST }, orphanRemoval = true)
     private List<ProductAttributeValue> attributeValues;
 
     @ManyToOne
     @JoinColumn(name = "shop_id")
     private Shop shop;
 
-    @OneToMany(mappedBy = "product", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
+    @OneToMany(mappedBy = "product", cascade = { CascadeType.MERGE, CascadeType.PERSIST }, orphanRemoval = true)
     private List<Review> reviews;
 
-    @OneToMany(mappedBy = "product", cascade = {CascadeType.MERGE, CascadeType.PERSIST}, orphanRemoval = true)
+    @OneToMany(mappedBy = "product", cascade = { CascadeType.MERGE, CascadeType.PERSIST }, orphanRemoval = true)
     private List<WishList> wishLists;
 }

@@ -1,11 +1,12 @@
 package com.multishop.service;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
 
+import com.multishop.model.dto.ProductSearchCriteria;
 import com.multishop.model.response.ProductResponse;
 
 public interface ProductService {
 
-	List<ProductResponse> getAllProducts();
+	Page<ProductResponse> getProductsBySpecification(ProductSearchCriteria productSearchCriteria);
 	ProductResponse getProductById(Long id);
 }

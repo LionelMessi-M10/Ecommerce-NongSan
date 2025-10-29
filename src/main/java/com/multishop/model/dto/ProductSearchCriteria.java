@@ -12,8 +12,9 @@ public class ProductSearchCriteria {
   private Byte status;
   private BigDecimal salePriceFrom;
   private BigDecimal salePriceTo;
-  private Integer rating;
+  private BigDecimal rating;
   private List<Long> categoryIds;
+  private List<Long> brandIds;
 
   // paging & sort
   private Integer pageNo = 0;

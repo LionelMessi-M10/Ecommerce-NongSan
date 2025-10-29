@@ -2,12 +2,12 @@ package com.multishop.converter;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import com.multishop.entity.Product;
 import com.multishop.model.response.ProductResponse;
 
-@Configuration
+@Component
 public class ProductConverter {
 
 	@Autowired
