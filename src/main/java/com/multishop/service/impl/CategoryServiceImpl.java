@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.multishop.converter.CategoryConverter;
 import com.multishop.entity.Category;
+import com.multishop.exception.ResourceNotFoundException;
 import com.multishop.model.dto.CategorySearchCriteria;
 import com.multishop.model.request.CategoryRequest;
 import com.multishop.model.response.CategoryResponse;
@@ -112,7 +113,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public CategoryResponse getById(Long id) {
 		Category category = categoryRepository.findById(id)
-				.orElseThrow(() -> new RuntimeException("Category not found: " + id));
+				.orElseThrow(() -> new ResourceNotFoundException("Category not found: " + id));
 		return categoryConverter.toResponse(category);
 	}
 

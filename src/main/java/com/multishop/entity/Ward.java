@@ -12,21 +12,20 @@ import java.io.Serial;
 
 @Entity
 @Table(name = "wards")
-@Getter 
+@Getter
 @Setter
 public class Ward extends Base { // Phường, xã
 
     @Serial
     private static final long serialVersionUID = 1L;
-	
-	@Column(name = "ward_code")
-	private Integer wardCode;
-	
-	@Column(name = "ward_name")
+
+    @Column(name = "ward_code")
+    private Integer wardCode;
+
+    @Column(name = "ward_name")
     private String wardName;
 
     @ManyToOne
     @JoinColumn(name = "district_id")
     private District district;
 }
-

@@ -18,19 +18,19 @@ import java.io.Serial;
 @Setter
 @Entity
 @Table(name = "wishlists", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"user_id", "product_id"})
+		@UniqueConstraint(columnNames = { "user_id", "product_id" })
 })
 public class WishList extends Base {
 
-    @Serial
-    private static final long serialVersionUID = 1L;
-	
+	@Serial
+	private static final long serialVersionUID = 1L;
+
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
-	
+
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "product_id", nullable = false)
 	private Product product;
-	
+
 }

@@ -1,5 +1,6 @@
 package com.multishop.model.request;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.multishop.model.dto.ProductAttributeValueDTO;
@@ -13,14 +14,20 @@ public class ProductRequest {
 	private Long id;
 	private String name;
 	private String description;
-	private Double originPrice;
-	private Double salePrice;
+	private BigDecimal originPrice;
+	private BigDecimal salePrice;
+	private BigDecimal discount;
 	private Long saleQuantity;
-	private Float discount;
-	private Integer stock;
-	private Byte status;
+	private Long stock;
+	private String sku;
+	private BigDecimal weight;
+	private String dimensions;
+	private String productStatus;
+	private Boolean isFeature;
+	private Long brandId;
+	private Integer status;
 	private Long categoryId;
 	private List<ProductImageDTO> productImages;
 	private List<ProductAttributeValueDTO> attributeValues;
-	
+
 }

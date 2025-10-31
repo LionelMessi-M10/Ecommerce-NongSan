@@ -9,14 +9,18 @@ import org.springframework.stereotype.Service;
 
 import com.multishop.converter.ProductConverter;
 import com.multishop.entity.Product;
+import com.multishop.exception.ResourceNotFoundException;
 import com.multishop.model.dto.ProductSearchCriteria;
+import com.multishop.model.request.ProductRequest;
 import com.multishop.model.response.ProductResponse;
 import com.multishop.repository.ProductRepository;
 import com.multishop.service.ProductService;
 import com.multishop.specification.ProductSpecification;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
+@Transactional
 @RequiredArgsConstructor
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -43,8 +47,36 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductResponse getProductById(Long id) {
 		Product product = productRepository.findById(id)
-				.orElseThrow(() -> new RuntimeException("Not found product by id: " + id));
+				.orElseThrow(() -> new ResourceNotFoundException("Not found product by id: " + id));
 		return productConverter.convertEntityToReponse(product);
+	}
+
+	@Override
+	public Page<ProductResponse> getAllProducts(int pageNo, int pageSize, String sortBy, String sortDir) {
+		Sort sort = sortDir.equalsIgnoreCase("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+		Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
+		return productRepository.findAll(pageable).map(productConverter::convertEntityToReponse);
+	}
+
+	@Override
+	public ProductResponse createProduct(ProductRequest request) {
+		Product product = productConverter.convertRequestToEntity(request);
+		product = productRepository.save(product);
+		return productConverter.convertEntityToReponse(product);
+	}
+
+	@Override
+	public ProductResponse updateProduct(Long id, ProductRequest request) {
+		Product existingProduct = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product not found by id: " + id));
+
+		productRepository.save(existingProduct);
+		return productConverter.convertEntityToReponse(existingProduct);
+	}
+
+	@Override
+	public void deleteProduct(Long id) {
+		Product product = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product not found by id: " + id));
+		productRepository.delete(product);
 	}
 
 }

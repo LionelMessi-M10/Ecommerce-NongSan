@@ -12,6 +12,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -63,7 +65,11 @@ public class Coupon extends Base {
     private CouponApply couponApply; // Phạm vi áp dụng coupon
 
     @Column(name = "applies_to_id")
-    private Long appliesToId; // Id áp dụng, có thể là category_id / shop_id / product_id 
+    private Long appliesToId; // Id áp dụng, có thể là category_id / shop_id / product_id
+
+    @ManyToOne
+    @JoinColumn(name = "coupon_apply_type_id")
+    private CouponApplyType couponApplyType;
 
     @OneToMany(mappedBy = "coupon")
     private List<CouponUser> usages;
