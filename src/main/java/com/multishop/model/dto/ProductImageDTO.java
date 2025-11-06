@@ -6,8 +6,9 @@ import lombok.Data;
 public class ProductImageDTO {
 
 	private Long id;
-	private String url;
+	private String imageUrl;
 	private Boolean isThumbnail;
-	private Byte status;
+	private Integer sortOrder;
+	private Integer status;
 	
 }

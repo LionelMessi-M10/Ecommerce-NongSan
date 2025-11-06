@@ -38,11 +38,11 @@ public class Product extends Base {
     private static final long serialVersionUID = 1L;
 
     @Column(name = "name", nullable = false)
-    private String name;
+    private String name; // Tên sản phẩm
 
     @Lob
     @Column(name = "description", columnDefinition = "TEXT")
-    private String description;
+    private String description; // Mô tả sản phẩm
 
     @Column(name = "origin_price", precision = 10, scale = 2)
     private BigDecimal originPrice; // giá gốc
@@ -86,7 +86,7 @@ public class Product extends Base {
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "product_categories", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
@@ -94,7 +94,7 @@ public class Product extends Base {
     private List<ProductImage> images;
 
     @OneToMany(mappedBy = "product", cascade = { CascadeType.MERGE, CascadeType.PERSIST }, orphanRemoval = true)
-    private List<ProductAttributeValue> attributeValues;
+    private List<ProductAttributeValue> productAttributeValues;
 
     @ManyToOne
     @JoinColumn(name = "shop_id")

@@ -28,6 +28,6 @@ public class ProductRequest {
 	private Integer status;
 	private Long categoryId;
 	private List<ProductImageDTO> productImages;
-	private List<ProductAttributeValueDTO> attributeValues;
+	private List<ProductAttributeValueDTO> productAttributeValues;
 
 }
