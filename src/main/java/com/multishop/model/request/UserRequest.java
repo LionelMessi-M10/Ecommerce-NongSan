@@ -32,6 +32,8 @@ public class UserRequest {
 	@Size(min = 6, message = "Password tối thiểu 6 ký tự")
 	private String password;
 
+	private String newPassword;
+
 	private Byte gender;
 	private String avatarUrl;
 	private LocalDateTime dateOfBirth;

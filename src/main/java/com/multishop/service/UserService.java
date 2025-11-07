@@ -16,5 +16,5 @@ public interface UserService {
 
 	List<UserResponse> findUsersByStatus(Byte status);
 
-	UserResponse updateProfile(UserRequest userRequest);
+	UserResponse updateUser(Long id, UserRequest userRequest);
 }

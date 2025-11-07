@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.multishop.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,31 +28,17 @@ public class UserConverter {
 	private final ModelMapper modelMapper;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	private final RoleRepository roleRepository;
-	private final UserRepository userRepository;
 	private final AddressConverter addressConverter;
 
 	public User covertToEntity(UserRequest userRequest) {
-
-		User existingUser = null;
-		if (userRequest.getId() != null)
-			existingUser = userRepository.findById(userRequest.getId()).orElse(null);
-
 		User user = modelMapper.map(userRequest, User.class);
-
-		if (userRequest.getPassword() != null) {
-			user.setPassword(bCryptPasswordEncoder.encode(userRequest.getPassword()));
-			if (existingUser != null) {
-				user.setId(existingUser.getId());
-			}
-		} else {
-			if (existingUser != null) {
-				user.setId(existingUser.getId());
-				user.setPassword(existingUser.getPassword());
-			}
-		}
 
 		if (userRequest.getProvider() != null)
 			user.setProvider(AuthProvider.valueOf(userRequest.getProvideId()));
+
+		if (userRequest.getNewPassword() != null) {
+			user.setPassword(bCryptPasswordEncoder.encode(userRequest.getNewPassword()));
+		}
 
 		Set<Role> roles = new HashSet<>();
 		if (userRequest.getRoleCode() != null && !userRequest.getRoleCode().isEmpty()) {

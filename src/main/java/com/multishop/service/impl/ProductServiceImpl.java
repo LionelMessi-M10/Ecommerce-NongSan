@@ -67,8 +67,10 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ProductResponse updateProduct(Long id, ProductRequest request) {
-		Product existingProduct = productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product not found by id: " + id));
-
+		if (productRepository.findById(id).orElse(null) == null) {
+			throw new ResourceNotFoundException("Product not found by id: " + id + " to update !");
+		}
+		Product existingProduct = productConverter.convertRequestToEntity(request);
 		productRepository.save(existingProduct);
 		return productConverter.convertEntityToReponse(existingProduct);
 	}

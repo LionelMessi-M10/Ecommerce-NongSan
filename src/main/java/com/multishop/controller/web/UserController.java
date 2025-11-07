@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -32,9 +33,9 @@ public class UserController {
     return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK, "User's profile", userConverter.convertToResponse(user)));
   }
   
-  @PostMapping("/users/profile")
-  public ResponseEntity<?> updateProfile(@RequestBody(required = false) UserRequest userRequest) {
-      UserResponse userResponse = userService.updateProfile(userRequest);
+  @PostMapping("/users/profile/{id}")
+  public ResponseEntity<?> updateProfile(@PathVariable Long id, @RequestBody(required = false) UserRequest userRequest) {
+      UserResponse userResponse = userService.updateUser(id, userRequest);
       return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK, "Update user's profile sucessfully !", userResponse));
   }
   

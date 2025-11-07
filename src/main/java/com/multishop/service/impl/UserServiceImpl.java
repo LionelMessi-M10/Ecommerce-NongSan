@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.multishop.converter.UserConverter;
 import com.multishop.entity.User;
+import com.multishop.exception.ResourceNotFoundException;
 import com.multishop.model.request.UserRequest;
 import com.multishop.model.response.UserResponse;
 import com.multishop.repository.UserRepository;
@@ -56,7 +57,10 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	@Override
-	public UserResponse updateProfile(UserRequest userRequest) {
+	public UserResponse updateUser(Long id, UserRequest userRequest) {
+		if (userRepository.findById(id).orElse(null) == null) {
+			throw new ResourceNotFoundException("User not found by id: " + id + " to update !");
+		}
 		User updateUser = userConverter.covertToEntity(userRequest);
 		userRepository.saveAndFlush(updateUser);
 		return userConverter.convertToResponse(updateUser);
