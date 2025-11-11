@@ -3,48 +3,54 @@ package com.multishop.utils;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.UUID;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class UploadFile {
 
-    // Đường dẫn thư mục gốc lưu ảnh tĩnh
-    private final String uploadDir = "src/main/resources/static/images";
+    @Value("${file.upload-dir}")
+    private String uploadDir;
 
-    // Hàm upload trả về đường dẫn tương đối để dùng trong HTML
-    public String uploadFile(MultipartFile file, String targetFolder) throws IOException {
-        if (file.isEmpty()) {
-            throw new IllegalArgumentException("File is empty");
-        }
+    @Value("${file.base-url}")
+    private String baseUrl;
 
-        // Tạo thư mục đích nếu chưa tồn tại
-        Path folderPath = Path.of(uploadDir, targetFolder);
-        if (!Files.exists(folderPath)) {
-            Files.createDirectories(folderPath);
-        }
+    public String uploadFile(MultipartFile file, String targetFolder) {
 
-        // Tạo tên file ngẫu nhiên để tránh trùng
-        String originalFileName = file.getOriginalFilename();
-        String fileExtension = getFileExtension(originalFileName);
-        String randomFileName = UUID.randomUUID().toString() + "." + fileExtension;
+        try {
+            Path projectPath = Paths.get("").toAbsolutePath(); // thư mục gốc project
+            Path rootUploadPath = projectPath.resolve(uploadDir);
 
-        // Ghi file
-        Path filePath = folderPath.resolve(randomFileName);
-        file.transferTo(filePath.toFile());
+            // Nếu có targetFolder → thêm vào path
+            Path finalFolderPath = (targetFolder != null && !targetFolder.isBlank())
+                    ? rootUploadPath.resolve(targetFolder)
+                    : rootUploadPath;
 
-        // Trả về đường dẫn tương đối dùng cho HTML (bắt đầu từ /images)
-        return "/images/" + targetFolder + "/" + randomFileName;
-    }
+            // tạo thư mục nếu chưa có
+            if (!Files.exists(finalFolderPath)) {
+                Files.createDirectories(finalFolderPath);
+            }
 
-    private String getFileExtension(String filename) {
-        int dotIndex = filename.lastIndexOf(".");
-        if (dotIndex > 0 && dotIndex < filename.length() - 1) {
-            return filename.substring(dotIndex + 1);
-        } else {
-            return ""; // Không có đuôi file
+            // tạo tên file duy nhất
+            String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+            Path filePath = finalFolderPath.resolve(fileName);
+
+            // lưu file
+            Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+            // build URL trả về cho FE
+            String fileUrl = baseUrl 
+                    + (targetFolder != null && !targetFolder.isBlank() ? targetFolder + "/" : "")
+                    + fileName;
+
+            return fileUrl;
+
+        } catch (IOException e) {
+            throw new RuntimeException("Lỗi khi upload file: " + e.getMessage());
         }
     }
 }

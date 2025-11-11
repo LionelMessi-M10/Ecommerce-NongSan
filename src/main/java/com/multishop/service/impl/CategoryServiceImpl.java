@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.multishop.converter.CategoryConverter;
 import com.multishop.entity.Category;
@@ -35,7 +36,7 @@ public class CategoryServiceImpl implements CategoryService {
 	 */
 	@Transactional
 	@Override
-	public CategoryResponse create(CategoryRequest request) {
+	public CategoryResponse create(CategoryRequest request, MultipartFile imageCategory) {
 		Category parent = null;
 		if (request.getParentId() != null) {
 			parent = categoryRepository.findById(request.getParentId())
@@ -43,7 +44,7 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 
 		// Tạo entity từ request
-		Category category = categoryConverter.toEntity(request, parent);
+		Category category = categoryConverter.toEntity(request, parent, imageCategory);
 
 		// set level
 		category.setLevel(parent == null ? 0 : parent.getLevel() + 1);
@@ -70,7 +71,7 @@ public class CategoryServiceImpl implements CategoryService {
 	 */
 	@Transactional
 	@Override
-	public CategoryResponse update(Long categoryId, CategoryRequest request) {
+	public CategoryResponse update(Long categoryId, CategoryRequest request, MultipartFile imageCategory) {
 		Category category = categoryRepository.findById(categoryId)
 				.orElseThrow(() -> new RuntimeException("Category not found"));
 
@@ -81,7 +82,7 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 
 		// Cập nhật entity
-		categoryConverter.updateEntity(category, request, parent);
+		categoryConverter.updateEntity(category, request, parent, imageCategory);
 
 		// update level & path
 		category.setLevel(parent == null ? 0 : parent.getLevel() + 1);

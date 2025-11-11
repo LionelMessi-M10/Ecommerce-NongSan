@@ -1,6 +1,8 @@
 package com.multishop.converter;
 
+import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.modelmapper.ModelMapper;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.multishop.entity.Category;
 import com.multishop.entity.Product;
 import com.multishop.enums.ProductStatus;
+import com.multishop.model.request.ProductImageRequest;
 import com.multishop.model.request.ProductRequest;
 import com.multishop.model.response.ProductResponse;
 import com.multishop.repository.BrandRepository;
@@ -46,7 +49,18 @@ public class ProductConverter {
 		return productResponse;
 	}
 
-	public Product convertRequestToEntity(ProductRequest productRequest) {
+	public Product convertRequestToEntity(ProductRequest productRequest, List<ProductImageRequest> productImageRequest) {
+		if (!productImageRequest.isEmpty()) {
+			productRequest.setProductImages(productImageRequest.stream().map(t -> {
+				try {
+					return productImageConverter.convertToDTO(t);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				return null;
+			}).toList());
+		}
+
 		Product product = modelMapper.map(productRequest, Product.class);
 
 		product.setProductStatus(ProductStatus.valueOf(productRequest.getProductStatus()));

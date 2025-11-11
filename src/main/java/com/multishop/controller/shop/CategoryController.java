@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RequiredArgsConstructor
 @RestController
@@ -52,14 +53,14 @@ public class CategoryController {
 	}
 
 	@PostMapping("/categories")
-	public ResponseEntity<?> createCategory(@Valid @RequestBody(required = false) CategoryRequest categoryRequest) {
-		CategoryResponse newCategory = categoryService.create(categoryRequest);
+	public ResponseEntity<?> createCategory(@Valid @RequestBody(required = false) CategoryRequest categoryRequest, @RequestParam("image") MultipartFile imageCategory) {
+		CategoryResponse newCategory = categoryService.create(categoryRequest, imageCategory);
 		return ResponseEntity.ok(ApiResponse.success(HttpStatus.CREATED, "Create category successfully", newCategory));
 	}
 
 	@PutMapping("/categories/{id}")
-	public ResponseEntity<?> updateCategory(@PathVariable Long id, @Valid @RequestBody(required = false) CategoryRequest categoryRequest) {
-		CategoryResponse updateCategory = categoryService.update(id, categoryRequest);
+	public ResponseEntity<?> updateCategory(@PathVariable Long id, @Valid @RequestBody(required = false) CategoryRequest categoryRequest, @RequestParam("image") MultipartFile imageCategory) {
+		CategoryResponse updateCategory = categoryService.update(id, categoryRequest, imageCategory);
 		return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK, "Update category successfully", updateCategory));
 	}
 

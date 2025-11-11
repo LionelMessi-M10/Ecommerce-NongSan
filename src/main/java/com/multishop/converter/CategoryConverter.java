@@ -4,9 +4,11 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.multishop.model.request.CategoryRequest;
 import com.multishop.model.response.CategoryResponse;
+import com.multishop.utils.UploadFile;
 
 import lombok.RequiredArgsConstructor;
 
@@ -17,8 +19,14 @@ import com.multishop.entity.Category;
 public class CategoryConverter {
 
     private final ModelMapper modelMapper;
+    private final UploadFile uploadFile;
 
-    public Category toEntity(CategoryRequest request, Category parent) {
+    public Category toEntity(CategoryRequest request, Category parent, MultipartFile imageCategory) {
+
+        if (imageCategory != null) {
+            request.setImage(uploadFile.uploadFile(imageCategory, "categories"));
+        }
+
         Category category = new Category();
         
         category.setName(request.getName());
@@ -31,7 +39,10 @@ public class CategoryConverter {
         return category;
     }
 
-    public void updateEntity(Category category, CategoryRequest request, Category parent) {
+    public void updateEntity(Category category, CategoryRequest request, Category parent, MultipartFile imageCategory) {
+        if (imageCategory != null) {
+            category.setImage(uploadFile.uploadFile(imageCategory, "categories"));
+        }
         category.setName(request.getName());
         category.setImage(request.getImage());
         category.setStatus(request.getStatus());

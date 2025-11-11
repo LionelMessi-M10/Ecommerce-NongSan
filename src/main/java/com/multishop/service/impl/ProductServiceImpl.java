@@ -1,5 +1,7 @@
 package com.multishop.service.impl;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +13,7 @@ import com.multishop.converter.ProductConverter;
 import com.multishop.entity.Product;
 import com.multishop.exception.ResourceNotFoundException;
 import com.multishop.model.dto.ProductSearchCriteria;
+import com.multishop.model.request.ProductImageRequest;
 import com.multishop.model.request.ProductRequest;
 import com.multishop.model.response.ProductResponse;
 import com.multishop.repository.ProductRepository;
@@ -59,18 +62,18 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ProductResponse createProduct(ProductRequest request) {
-		Product product = productConverter.convertRequestToEntity(request);
+	public ProductResponse createProduct(ProductRequest request, List<ProductImageRequest> productImageRequest) {
+		Product product = productConverter.convertRequestToEntity(request, productImageRequest);
 		product = productRepository.save(product);
 		return productConverter.convertEntityToReponse(product);
 	}
 
 	@Override
-	public ProductResponse updateProduct(Long id, ProductRequest request) {
+	public ProductResponse updateProduct(Long id, ProductRequest request, List<ProductImageRequest> productImageRequest) {
 		if (productRepository.findById(id).orElse(null) == null) {
 			throw new ResourceNotFoundException("Product not found by id: " + id + " to update !");
 		}
-		Product existingProduct = productConverter.convertRequestToEntity(request);
+		Product existingProduct = productConverter.convertRequestToEntity(request, productImageRequest);
 		productRepository.save(existingProduct);
 		return productConverter.convertEntityToReponse(existingProduct);
 	}
