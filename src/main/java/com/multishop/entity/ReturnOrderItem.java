@@ -31,6 +31,9 @@ public class ReturnOrderItem extends Base {
     @ManyToOne
     @JoinColumn(name = "return_product_id")
     private Product product;
+
+    @Column(name = "sale_price", precision = 10, scale = 2)
+    private BigDecimal salePrice;
     
     @Column(name = "quantity")
     private Integer quantity; // Số lượng sản phẩm trả lại

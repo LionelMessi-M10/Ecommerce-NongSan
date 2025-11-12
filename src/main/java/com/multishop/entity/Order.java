@@ -33,10 +33,10 @@ public class Order extends Base {
     private static final long serialVersionUID = 1L;
 	
     @Column(name = "total_amount", nullable = false, precision = 10, scale = 2)
-    private BigDecimal totalAmount; // Tổng tiền đơn hàng sau giảm giá
+    private BigDecimal totalAmount; // Tổng tiền đơn hàng
 
     @Column(name = "shipping_fee", nullable = false, precision = 10, scale = 2)
-    private BigDecimal shippingFee;
+    private BigDecimal shippingFee; // Phí ship
 
     @Column(name = "discount_amount", nullable = false, precision = 10, scale = 2)
     private BigDecimal discountAmount; // Tổng tiền giảm từ coupon/voucher

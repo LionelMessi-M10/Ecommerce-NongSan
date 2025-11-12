@@ -29,9 +29,6 @@ public class Address extends Base {
     @Serial
     private static final long serialVersionUID = 1L;
 	
-	@Column(name = "receiver_name", length = 100)
-	private String receiveName;
-	
 	@Column(name = "phone_number", length = 20)
 	private String phoneNumber;
 	

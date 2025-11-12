@@ -12,6 +12,7 @@ import com.multishop.exception.ResourceNotFoundException;
 import com.multishop.model.request.UserRequest;
 import com.multishop.model.response.UserResponse;
 import com.multishop.repository.UserRepository;
+import com.multishop.service.CartService;
 import com.multishop.service.UserService;
 
 import jakarta.transaction.Transactional;
@@ -22,13 +23,15 @@ import lombok.RequiredArgsConstructor;
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
+	private final CartService cartService;
 	private final UserConverter userConverter;
 
 	@Transactional
 	@Override
 	public void registerAccount(UserRequest userRequest) {
 		User newUser = userConverter.covertToEntity(userRequest);
-		this.userRepository.saveAndFlush(newUser);
+		newUser = this.userRepository.saveAndFlush(newUser);
+		cartService.createCartForUser(newUser);
 	}
 
 	@Override
