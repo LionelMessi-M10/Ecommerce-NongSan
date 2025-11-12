@@ -1,4 +1,4 @@
-package com.multishop.controller.shop;
+package com.multishop.controller.web;
 
 import java.util.List;
 
@@ -17,12 +17,12 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/web")
 public class GhnApi {
 
 	private final GhnService ghnService;
 
-	@PostMapping("/admin/province")
+	@PostMapping("/province")
 	public void handleSaveProvince() {
 		ghnService.saveProvine();
 	}
