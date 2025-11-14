@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class AddressDTO {
 
   private Long id;
-  private String receiveName;
   private String phoneNumber;
   private String addressDetail;
   private Boolean isDefault;

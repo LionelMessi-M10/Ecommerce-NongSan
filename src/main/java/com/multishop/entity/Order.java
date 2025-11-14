@@ -44,6 +44,9 @@ public class Order extends Base {
     @Column(name = "final_amount", nullable = false, precision = 10, scale = 2)
     private BigDecimal finalAmount; // Tổng tiền thanh toán cuối cùng (bao gồm phí vận chuyển, giảm giá)
 
+    @Column(name = "cancel_order_reason", length = 500)
+    private String cancelOrderReason; // Lý do trả hàng
+
     @Enumerated(EnumType.STRING)
     @Column(name = "order_status")
     private OrderStatus orderStatus; // Trạng thái đơn hàng: quy trình đặt, xử lý, giao hàng, huỷ đơn

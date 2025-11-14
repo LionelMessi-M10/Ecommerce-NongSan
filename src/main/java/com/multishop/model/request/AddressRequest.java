@@ -10,8 +10,8 @@ public class AddressRequest {
   private String addressDetail;
   private Boolean isDefault;
   private String addressType;
-  private Long provinceId;
-  private Long districtId;
-  private Long wardId;
+  private Integer provinceId;
+  private Integer districtId;
+  private Integer wardId;
 
 }

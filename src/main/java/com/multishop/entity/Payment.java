@@ -28,7 +28,7 @@ public class Payment extends Base {
 
     @Serial
     private static final long serialVersionUID = 1L;
-	
+
     @Column(name = "transaction_id", unique = true)
     private String transactionId; // Mã giao dịch thanh toán, nếu có
 
