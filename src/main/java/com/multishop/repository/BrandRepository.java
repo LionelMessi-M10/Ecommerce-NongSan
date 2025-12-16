@@ -11,6 +11,6 @@ import com.multishop.entity.Brand;
 public interface BrandRepository extends JpaRepository<Brand, Long> {
 
   Page<Brand> findByStatusAndName(Integer status, String name, Pageable aPageable);
-  boolean exexistsByName(String name);
+  boolean existsByName(String name);
 
 }

@@ -34,7 +34,7 @@ public class Category extends Base {
 
 	@Column(name = "image")
 	private String image;
-	
+
 	// Cấp độ category trong cây, đánh dấu mức độ sâu của category trong cây phân cấp
     @Column(name = "level")
     private Integer level;

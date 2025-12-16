@@ -40,7 +40,7 @@ public class BrandServiceImpl implements BrandService {
 
   @Override
   public BrandResponse createBrand(BrandRequest brandRequest, MultipartFile multipartFile) {
-    if (brandRepository.exexistsByName(brandRequest.getName())) {
+    if (brandRepository.existsByName(brandRequest.getName())) {
       throw new RuntimeException("Brand is already !");
     }
     Brand newBrand = brandConverter.convertToEntity(brandRequest, multipartFile);
@@ -53,7 +53,7 @@ public class BrandServiceImpl implements BrandService {
     Brand exitsBrand = brandRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Not found brand to update by id: " + id));
 
-    if (brandRepository.exexistsByName(brandRequest.getName())) {
+    if (brandRepository.existsByName(brandRequest.getName())) {
       throw new RuntimeException("Can't update brand with name is already !");
     }
     

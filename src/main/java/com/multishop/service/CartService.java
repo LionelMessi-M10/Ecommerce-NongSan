@@ -1,12 +1,9 @@
 package com.multishop.service;
 
-import com.multishop.entity.User;
 import com.multishop.model.request.CartItemRequest;
 import com.multishop.model.response.CartResponse;
 
 public interface CartService {
-
-  CartResponse createCartForUser(User user);
 
   Integer getTotalCartItem();
 

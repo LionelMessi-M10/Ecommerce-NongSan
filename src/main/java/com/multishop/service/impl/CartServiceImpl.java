@@ -1,13 +1,9 @@
 package com.multishop.service.impl;
 
-import java.math.BigDecimal;
-
 import org.springframework.stereotype.Service;
-
 import com.multishop.converter.CartConverter;
 import com.multishop.entity.Cart;
 import com.multishop.entity.CartItem;
-import com.multishop.entity.User;
 import com.multishop.exception.ResourceNotFoundException;
 import com.multishop.model.request.CartItemRequest;
 import com.multishop.model.response.CartResponse;
@@ -28,19 +24,6 @@ public class CartServiceImpl implements CartService {
   private final CartItemRepository cartItemRepository;
   private final UserService userService;
   private final CartConverter cartConverter;
-
-  @Override
-  public CartResponse createCartForUser(User user) {
-    Cart newCart = new Cart();
-
-    newCart.setTotalProduct(0);
-    newCart.setTotalPrice(BigDecimal.ZERO);
-    newCart.setUser(user);
-
-    newCart = cartRepository.save(newCart);
-
-    return null;
-  }
 
   @Override
   public Integer getTotalCartItem() {
