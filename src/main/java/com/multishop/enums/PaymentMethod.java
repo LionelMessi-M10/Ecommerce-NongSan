@@ -1,7 +1,7 @@
 package com.multishop.enums;
 
 public enum PaymentMethod {
-	
+
     CASH_ON_DELIVERY("Thanh toán khi nhận hàng"),
     BANK_TRANSFER("Chuyển khoản ngân hàng"),
     CREDIT_CARD("Thẻ tín dụng"),
@@ -23,6 +23,5 @@ public enum PaymentMethod {
     public String getDisplayName() {
         return displayName;
     }
-    
-}
 
+}

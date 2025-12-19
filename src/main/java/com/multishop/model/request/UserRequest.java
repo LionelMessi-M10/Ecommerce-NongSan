@@ -28,10 +28,10 @@ public class UserRequest {
 	private String provideId;
 	private String phoneNumber;
 
+	private String password;
+	
 	@NotBlank(message = "Password không được để trống")
 	@Size(min = 6, message = "Password tối thiểu 6 ký tự")
-	private String password;
-
 	private String newPassword;
 
 	private Byte gender;

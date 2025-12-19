@@ -68,9 +68,9 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public UserResponse updateUser(Long id, UserRequest userRequest) {
-		if (userRepository.findById(id).orElse(null) == null) {
-			throw new ResourceNotFoundException("User not found by id: " + id + " to update !");
-		}
+		User existingUser = userRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("User not found by id: " + id + " to update !"));
+		userRequest.setPassword(existingUser.getPassword());
 		User updateUser = userConverter.covertToEntity(userRequest);
 		userRepository.saveAndFlush(updateUser);
 		return userConverter.convertToResponse(updateUser);
