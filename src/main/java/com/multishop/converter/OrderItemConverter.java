@@ -23,9 +23,9 @@ public class OrderItemConverter {
 		OrderItemResponse orderItemResponse = modelMapper.map(orderDetail, OrderItemResponse.class);
 
 		orderItemResponse.setName(orderDetail.getProduct().getName());
-		orderItemResponse.setThumbnails(orderDetail.getProduct().getImages().stream()
+		orderItemResponse.setThumbnails(orderDetail.getProduct().getProductMedias().stream()
 				.filter(product -> product.getIsThumbnail())
-				.map(product -> product.getImageUrl()).toList());
+				.map(product -> product.getUrl()).toList());
 
 		return orderItemResponse;
 	}

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.multishop.entity.Category;
 import com.multishop.entity.Product;
 import com.multishop.enums.ProductStatus;
-import com.multishop.model.request.ProductImageRequest;
+import com.multishop.model.request.ProductMediaRequest;
 import com.multishop.model.request.ProductRequest;
 import com.multishop.model.response.ProductResponse;
 import com.multishop.repository.BrandRepository;
@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class ProductConverter {
 
 	private final ModelMapper modelMapper;
-	private final ProductImageConverter productImageConverter;
+	private final ProductMediaConverter productImageConverter;
 	private final ProductAttributeValueConverter productAttributeValueConverter;
 	private final ReviewConverter reviewConverter;
 	private final BrandRepository brandRepository;
@@ -37,7 +37,7 @@ public class ProductConverter {
 		productResponse.setBrandId(product.getBrand().getId());
 		productResponse.setCategoryIds(product.getCategories().stream().map(category -> category.getId()).toList());
 		productResponse
-				.setProductImageResponses(product.getImages().stream().map(productImageConverter::convertToResponse).toList());
+				.setProductMediaResponses(product.getProductMedias().stream().map(productImageConverter::convertToResponse).toList());
 		productResponse.setProductAttributeValueResponses(product.getProductAttributeValues().stream().map(
 				productAttributeValueConverter::convertToResponse).toList());
 
@@ -49,9 +49,9 @@ public class ProductConverter {
 		return productResponse;
 	}
 
-	public Product convertRequestToEntity(ProductRequest productRequest, List<ProductImageRequest> productImageRequest) {
+	public Product convertRequestToEntity(ProductRequest productRequest, List<ProductMediaRequest> productImageRequest) {
 		if (!productImageRequest.isEmpty()) {
-			productRequest.setProductImages(productImageRequest.stream().map(t -> {
+			productRequest.setProductMedias(productImageRequest.stream().map(t -> {
 				try {
 					return productImageConverter.convertToDTO(t);
 				} catch (IOException e) {
@@ -75,9 +75,9 @@ public class ProductConverter {
 			categories.add(category);
 			product.setCategories(categories);
 		}
-		if (!productRequest.getProductImages().isEmpty()) {
+		if (!productRequest.getProductMedias().isEmpty()) {
 			product
-					.setImages(productRequest.getProductImages().stream().map(productImageConverter::convertToEntity).toList());
+					.setProductMedias(productRequest.getProductMedias().stream().map(productImageConverter::convertToEntity).toList());
 		}
 		if (!productRequest.getProductAttributeValues().isEmpty()) {
 			product.setProductAttributeValues(productRequest.getProductAttributeValues().stream()

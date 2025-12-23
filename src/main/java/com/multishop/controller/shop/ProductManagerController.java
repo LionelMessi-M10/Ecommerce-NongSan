@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.multishop.model.dto.ProductSearchCriteria;
-import com.multishop.model.request.ProductImageRequest;
+import com.multishop.model.request.ProductMediaRequest;
 import com.multishop.model.request.ProductRequest;
 import com.multishop.model.response.ProductResponse;
 import com.multishop.payload.ApiResponse;
@@ -52,7 +52,7 @@ public class ProductManagerController {
 
 	@PostMapping
 	public ResponseEntity<?> createProduct(@RequestBody(required = false) ProductRequest productRequest,
-			@RequestPart(name = "images", required = false) List<ProductImageRequest> productImageRequest) {
+			@RequestPart(name = "images", required = false) List<ProductMediaRequest> productImageRequest) {
 		ProductResponse newProduct = productService.createProduct(productRequest, productImageRequest);
 		return ResponseEntity.status(HttpStatus.CREATED)
 				.body(ApiResponse.success(HttpStatus.CREATED, "Create new product successfully !", newProduct));
@@ -61,7 +61,7 @@ public class ProductManagerController {
 	@PutMapping("/{id}")
 	public ResponseEntity<?> updateProduct(@PathVariable Long id,
 			@RequestBody(required = false) ProductRequest productRequest,
-			@RequestPart(name = "images", required = false) List<ProductImageRequest> productImageRequests) {
+			@RequestPart(name = "images", required = false) List<ProductMediaRequest> productImageRequests) {
 		ProductResponse updatedProduct = productService.updateProduct(id, productRequest, productImageRequests);
 		return ResponseEntity.ok(ApiResponse.success(HttpStatus.OK, "Update product sucessfully !", updatedProduct));
 	}

@@ -30,9 +30,9 @@ public class WishListConverter {
     wishListResponse.setSalePrice(wishList.getProduct().getSalePrice());
     wishListResponse.setProductStatus(wishList.getProduct().getProductStatus().toString());
 
-    wishListResponse.setThumbernail(wishList.getProduct().getImages().stream()
+    wishListResponse.setThumbernail(wishList.getProduct().getProductMedias().stream()
         .filter(imageItem -> imageItem.getIsThumbnail())
-        .map(imageItem -> imageItem.getImageUrl())
+        .map(imageItem -> imageItem.getUrl())
         .toList());
 
     return wishListResponse;

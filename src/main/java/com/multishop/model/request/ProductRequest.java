@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.multishop.model.dto.ProductAttributeValueDTO;
-import com.multishop.model.dto.ProductImageDTO;
+import com.multishop.model.dto.ProductMediaDTO;
 
 import lombok.Data;
 
@@ -27,7 +27,7 @@ public class ProductRequest {
 	private Long brandId;
 	private Integer status;
 	private Long categoryId;
-	private List<ProductImageDTO> productImages;
+	private List<ProductMediaDTO> productMedias;
 	private List<ProductAttributeValueDTO> productAttributeValues;
 
 }

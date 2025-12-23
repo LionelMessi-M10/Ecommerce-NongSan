@@ -13,7 +13,7 @@ import com.multishop.converter.ProductConverter;
 import com.multishop.entity.Product;
 import com.multishop.exception.ResourceNotFoundException;
 import com.multishop.model.dto.ProductSearchCriteria;
-import com.multishop.model.request.ProductImageRequest;
+import com.multishop.model.request.ProductMediaRequest;
 import com.multishop.model.request.ProductRequest;
 import com.multishop.model.response.ProductResponse;
 import com.multishop.repository.ProductRepository;
@@ -62,14 +62,14 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ProductResponse createProduct(ProductRequest request, List<ProductImageRequest> productImageRequest) {
+	public ProductResponse createProduct(ProductRequest request, List<ProductMediaRequest> productImageRequest) {
 		Product product = productConverter.convertRequestToEntity(request, productImageRequest);
 		product = productRepository.save(product);
 		return productConverter.convertEntityToReponse(product);
 	}
 
 	@Override
-	public ProductResponse updateProduct(Long id, ProductRequest request, List<ProductImageRequest> productImageRequest) {
+	public ProductResponse updateProduct(Long id, ProductRequest request, List<ProductMediaRequest> productImageRequest) {
 		if (productRepository.findById(id).orElse(null) == null) {
 			throw new ResourceNotFoundException("Product not found by id: " + id + " to update !");
 		}

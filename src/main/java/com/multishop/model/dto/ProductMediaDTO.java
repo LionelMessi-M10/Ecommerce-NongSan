@@ -3,7 +3,7 @@ package com.multishop.model.dto;
 import lombok.Data;
 
 @Data
-public class ProductImageDTO {
+public class ProductMediaDTO {
 
 	private Long id;
 	private String imageUrl;

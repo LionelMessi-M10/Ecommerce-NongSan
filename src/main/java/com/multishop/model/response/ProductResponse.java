@@ -26,7 +26,7 @@ public class ProductResponse {
 	private Integer reviewCount;
 	private Long brandId;
 	private List<Long> categoryIds;
-	private List<ProductImageResponse> productImageResponses;
+	private List<ProductMediaResponse> productMediaResponses;
 	private List<ProductAttributeValueResponse> productAttributeValueResponses;
 	private List<ReviewResponse> reviewResponses;
 	private LocalDateTime createdDate;

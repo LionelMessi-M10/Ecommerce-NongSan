@@ -91,7 +91,7 @@ public class Product extends Base {
     private Set<Category> categories = new HashSet<>();
 
     @OneToMany(mappedBy = "product", cascade = { CascadeType.MERGE, CascadeType.PERSIST }, orphanRemoval = true)
-    private List<ProductImage> images;
+    private List<ProductMedia> productMedias;
 
     @OneToMany(mappedBy = "product", cascade = { CascadeType.MERGE, CascadeType.PERSIST }, orphanRemoval = true)
     private List<ProductAttributeValue> productAttributeValues;

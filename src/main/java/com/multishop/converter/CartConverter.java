@@ -81,8 +81,8 @@ public class CartConverter {
         cartItemResponse.setName(product.getName());
         cartItemResponse.setSalePrice(product.getSalePrice());
         cartItemResponse.setProductStatus(product.getProductStatus().toString());
-        cartItemResponse.setThumbnails(product.getImages().stream().filter(image -> image.getIsThumbnail())
-            .map(image -> image.getImageUrl()).toList());
+        cartItemResponse.setThumbnails(product.getProductMedias().stream().filter(image -> image.getIsThumbnail())
+            .map(image -> image.getUrl()).toList());
 
         return cartItemResponse;
       }).toList());
