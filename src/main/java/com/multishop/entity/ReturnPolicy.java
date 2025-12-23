@@ -12,12 +12,12 @@ import java.io.Serial;
 @Table(name = "return_policies")
 public class ReturnPolicy extends Base { // Chính sách bán hàng
 
-    @Serial
-    private static final long serialVersionUID = 1L;
-	
+	@Serial
+	private static final long serialVersionUID = 1L;
+
 	@ManyToOne
-    @JoinColumn(name = "shop_id", nullable = false)
-    private Shop shop; // Liên kết đến cửa hàng
+	@JoinColumn(name = "shop_id", nullable = false)
+	private Shop shop; // Liên kết đến cửa hàng
 
 	@Column(name = "policy_name")
 	private String policyName; // Tên chính sách
