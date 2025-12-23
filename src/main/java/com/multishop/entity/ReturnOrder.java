@@ -45,6 +45,11 @@ public class ReturnOrder extends Base { // Yêu cầu trả hàng/hoàn tiền
     @Column(name = "return_reason", columnDefinition = "TEXT")
     private String returnReason; // Lý do trả hàng, hoàn tiền
 
+    private String description; // Mô tả thêm
+
+    @Column(name = "evidence", length = 500, nullable = true)
+    private String evidence; // Bằng chứng (hình ảnh, video)
+
     @Enumerated(EnumType.STRING)
     @Column(name = "return_status")
     private ReturnOrderStatus returnStatus; // Trạng thái yêu cầu
