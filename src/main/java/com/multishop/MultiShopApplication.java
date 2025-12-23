@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaAuditing(auditorAwareRef = "auditorAware") // Gọi bean dưới
 public class MultiShopApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(MultiShopApplication.class, args);
-    }
+		public static void main(String[] args) {
+			SpringApplication.run(MultiShopApplication.class, args);
+		}
 
 }
