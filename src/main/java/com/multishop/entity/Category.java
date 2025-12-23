@@ -32,6 +32,9 @@ public class Category extends Base {
 	@Column(name = "name", unique = true)
 	private String name;
 
+    @Column(name = "slug", unique = true)
+    private String slug;
+
 	@Column(name = "image")
 	private String image;
 
