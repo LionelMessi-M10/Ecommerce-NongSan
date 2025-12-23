@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class ProductConverter {
 
 	private final ModelMapper modelMapper;
-	private final ProductMediaConverter productImageConverter;
+	private final ProductMediaConverter productMediaConverter;
 	private final ProductAttributeValueConverter productAttributeValueConverter;
 	private final ReviewConverter reviewConverter;
 	private final BrandRepository brandRepository;
@@ -37,7 +37,7 @@ public class ProductConverter {
 		productResponse.setBrandId(product.getBrand().getId());
 		productResponse.setCategoryIds(product.getCategories().stream().map(category -> category.getId()).toList());
 		productResponse
-				.setProductMediaResponses(product.getProductMedias().stream().map(productImageConverter::convertToResponse).toList());
+				.setProductMediaResponses(product.getProductMedias().stream().map(productMediaConverter::convertToResponse).toList());
 		productResponse.setProductAttributeValueResponses(product.getProductAttributeValues().stream().map(
 				productAttributeValueConverter::convertToResponse).toList());
 
@@ -49,11 +49,11 @@ public class ProductConverter {
 		return productResponse;
 	}
 
-	public Product convertRequestToEntity(ProductRequest productRequest, List<ProductMediaRequest> productImageRequest) {
-		if (!productImageRequest.isEmpty()) {
-			productRequest.setProductMedias(productImageRequest.stream().map(t -> {
+	public Product convertRequestToEntity(ProductRequest productRequest, List<ProductMediaRequest> productMediaRequest) {
+		if (!productMediaRequest.isEmpty()) {
+			productRequest.setProductMedias(productMediaRequest.stream().map(t -> {
 				try {
-					return productImageConverter.convertToDTO(t);
+					return productMediaConverter.convertToDTO(t);
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -77,7 +77,7 @@ public class ProductConverter {
 		}
 		if (!productRequest.getProductMedias().isEmpty()) {
 			product
-					.setProductMedias(productRequest.getProductMedias().stream().map(productImageConverter::convertToEntity).toList());
+					.setProductMedias(productRequest.getProductMedias().stream().map(productMediaConverter::convertToEntity).toList());
 		}
 		if (!productRequest.getProductAttributeValues().isEmpty()) {
 			product.setProductAttributeValues(productRequest.getProductAttributeValues().stream()

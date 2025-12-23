@@ -33,7 +33,7 @@ public class ProductMediaConverter {
 
   public ProductMediaDTO convertToDTO(ProductMediaRequest productImageRequest) throws IOException {
     ProductMediaDTO productImageDTO = modelMapper.map(productImageRequest, ProductMediaDTO.class);
-    productImageDTO.setImageUrl(uploadFile.uploadFile(productImageRequest.getMediaFile(), "products"));
+    productImageDTO.setUrl(uploadFile.uploadFile(productImageRequest.getMediaFile(), "products"));
     return productImageDTO;
   }
 

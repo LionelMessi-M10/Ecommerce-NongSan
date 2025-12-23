@@ -6,7 +6,8 @@ import lombok.Data;
 public class ProductMediaDTO {
 
 	private Long id;
-	private String imageUrl;
+	private String url;
+	private String mediaType; // Loại media (image, video, etc.)
 	private Boolean isThumbnail;
 	private Integer sortOrder;
 	private Integer status;
