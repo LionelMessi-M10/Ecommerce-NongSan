@@ -14,8 +14,8 @@ import com.multishop.entity.Role;
 import com.multishop.entity.User;
 import com.multishop.enums.AuthProvider;
 import com.multishop.enums.ERole;
-import com.multishop.model.dto.AddressDTO;
 import com.multishop.model.request.UserRequest;
+import com.multishop.model.response.AddressResponse;
 import com.multishop.model.response.UserResponse;
 import com.multishop.repository.RoleRepository;
 
@@ -52,9 +52,9 @@ public class UserConverter {
 		}
 		user.setRoles(roles);
 
-		if (userRequest.getAddresses() != null && !userRequest.getAddresses().isEmpty()) {
+		if (userRequest.getAddressRequests() != null && !userRequest.getAddressRequests().isEmpty()) {
 			List<Address> addresses = new ArrayList<>();
-			userRequest.getAddresses().forEach(item -> addresses.add(addressConverter.convertToEntity(item)));
+			userRequest.getAddressRequests().forEach(item -> addresses.add(addressConverter.convertToEntity(item)));
 			user.setAddresses(addresses);
 		}
 
@@ -70,9 +70,9 @@ public class UserConverter {
 				.setRoleCode(user.getRoles().stream().map(item -> item.getCode().name()).toList().getFirst());
 
 		if (user.getAddresses() != null && !user.getAddresses().isEmpty()) {
-			List<AddressDTO> addresses = new ArrayList<>();
-			user.getAddresses().forEach(item -> addresses.add(addressConverter.convertToDTO(item)));
-			userResponse.setAddresses(addresses);
+			List<AddressResponse> addressResponses = new ArrayList<>();
+			user.getAddresses().forEach(item -> addressResponses.add(addressConverter.convertToResponse(item)));
+			userResponse.setAddressResponses(addressResponses);
 		}
 
 		return userResponse;

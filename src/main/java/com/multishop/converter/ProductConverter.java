@@ -50,17 +50,6 @@ public class ProductConverter {
 	}
 
 	public Product convertRequestToEntity(ProductRequest productRequest, List<ProductMediaRequest> productMediaRequest) {
-		if (!productMediaRequest.isEmpty()) {
-			productRequest.setProductMedias(productMediaRequest.stream().map(t -> {
-				try {
-					return productMediaConverter.convertToDTO(t);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				return null;
-			}).toList());
-		}
-
 		Product product = modelMapper.map(productRequest, Product.class);
 
 		product.setProductStatus(ProductStatus.valueOf(productRequest.getProductStatus()));
@@ -75,9 +64,16 @@ public class ProductConverter {
 			categories.add(category);
 			product.setCategories(categories);
 		}
-		if (!productRequest.getProductMedias().isEmpty()) {
+		if (!productRequest.getProductMediaRequests().isEmpty()) {
 			product
-					.setProductMedias(productRequest.getProductMedias().stream().map(productMediaConverter::convertToEntity).toList());
+					.setProductMedias(productRequest.getProductMediaRequests().stream().map(t -> {
+						try {
+							return productMediaConverter.convertToEntity(t);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						return null;
+					}).toList());
 		}
 		if (!productRequest.getProductAttributeValues().isEmpty()) {
 			product.setProductAttributeValues(productRequest.getProductAttributeValues().stream()

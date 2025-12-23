@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.multishop.model.dto.ProductAttributeValueDTO;
-import com.multishop.model.dto.ProductMediaDTO;
 
 import lombok.Data;
 
@@ -27,7 +26,7 @@ public class ProductRequest {
 	private Long brandId;
 	private Integer status;
 	private Long categoryId;
-	private List<ProductMediaDTO> productMedias;
+	private List<ProductMediaRequest> productMediaRequests;
 	private List<ProductAttributeValueDTO> productAttributeValues;
 
 }

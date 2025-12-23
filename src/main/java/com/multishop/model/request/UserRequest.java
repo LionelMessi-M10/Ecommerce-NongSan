@@ -3,8 +3,6 @@ package com.multishop.model.request;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.multishop.model.dto.AddressDTO;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -41,6 +39,6 @@ public class UserRequest {
 	private Boolean isPhoneVerified;
 	private String roleCode;
 	private Integer status;
-	private List<AddressDTO> addresses;
+	private List<AddressRequest> addressRequests;
 
 }

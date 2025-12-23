@@ -1,13 +1,15 @@
-package com.multishop.model.dto;
+package com.multishop.model.response;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddressDTO {
+@Getter
+@Setter
+public class AddressResponse {
 
   private Long id;
   private String phoneNumber;

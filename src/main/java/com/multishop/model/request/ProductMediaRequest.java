@@ -15,6 +15,7 @@ public class ProductMediaRequest {
 
 	private Long id;
 	private MultipartFile mediaFile;
+	private String url;
 	private String mediaType; // Loại media (image, video, etc.)
 	private Boolean isThumbnail;
 	private Integer sortOrder;
