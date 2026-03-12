@@ -8,9 +8,9 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.multishop.converter.CategoryConverter;
 import com.multishop.entity.Category;
 import com.multishop.exception.ResourceNotFoundException;
+import com.multishop.mapper.CategoryConverter;
 import com.multishop.model.dto.CategorySearchCriteria;
 import com.multishop.model.request.CategoryRequest;
 import com.multishop.model.response.CategoryResponse;

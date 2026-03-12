@@ -5,9 +5,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.multishop.converter.WishListConverter;
 import com.multishop.entity.WishList;
 import com.multishop.exception.ResourceNotFoundException;
+import com.multishop.mapper.WishListConverter;
 import com.multishop.model.response.WishListResponse;
 import com.multishop.repository.WishListRepository;
 import com.multishop.service.UserService;

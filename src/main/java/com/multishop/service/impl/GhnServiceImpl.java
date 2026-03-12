@@ -15,8 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.multishop.converter.ProvinceConverter;
 import com.multishop.entity.Province;
+import com.multishop.mapper.ProvinceConverter;
 import com.multishop.model.response.ProvinceResponse;
 import com.multishop.repository.ProvinceRepository;
 import com.multishop.service.GhnService;

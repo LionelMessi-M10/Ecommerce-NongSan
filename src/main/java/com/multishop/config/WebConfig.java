@@ -19,8 +19,10 @@ public class WebConfig implements WebMvcConfigurer {
     private String uploadDir;
 
     @Bean
-    ModelMapper mapper() {
-        return new ModelMapper();
+    public ModelMapper modelMapper() {
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setSkipNullEnabled(true); // Quan trọng: Bỏ qua field null
+        return modelMapper;
     }
 
     @Bean

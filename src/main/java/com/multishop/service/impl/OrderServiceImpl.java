@@ -7,9 +7,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import com.multishop.converter.OrderConverter;
 import com.multishop.entity.Order;
 import com.multishop.exception.ResourceNotFoundException;
+import com.multishop.mapper.OrderConverter;
 import com.multishop.model.dto.OrderSearchCriteria;
 import com.multishop.model.request.OrderRequest;
 import com.multishop.model.response.OrderResponse;

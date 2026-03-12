@@ -1,4 +1,4 @@
-package com.multishop.converter;
+package com.multishop.mapper;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

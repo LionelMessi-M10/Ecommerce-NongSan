@@ -3,8 +3,8 @@ package com.multishop.controller.web;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.multishop.converter.UserConverter;
 import com.multishop.entity.User;
+import com.multishop.mapper.UserConverter;
 import com.multishop.model.request.UserRequest;
 import com.multishop.model.response.UserResponse;
 import com.multishop.payload.ApiResponse;

@@ -1,4 +1,4 @@
-package com.multishop.converter;
+package com.multishop.mapper;
 
 import java.util.ArrayList;
 import java.util.HashSet;

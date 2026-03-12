@@ -9,9 +9,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import com.multishop.converter.ProductConverter;
 import com.multishop.entity.Product;
 import com.multishop.exception.ResourceNotFoundException;
+import com.multishop.mapper.ProductConverter;
 import com.multishop.model.dto.ProductSearchCriteria;
 import com.multishop.model.request.ProductMediaRequest;
 import com.multishop.model.request.ProductRequest;

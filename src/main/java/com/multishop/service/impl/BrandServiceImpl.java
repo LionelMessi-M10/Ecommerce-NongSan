@@ -6,9 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.multishop.converter.BrandConverter;
 import com.multishop.entity.Brand;
 import com.multishop.exception.ResourceNotFoundException;
+import com.multishop.mapper.BrandConverter;
 import com.multishop.model.request.BrandRequest;
 import com.multishop.model.request.BrandSearchRequest;
 import com.multishop.model.response.BrandResponse;

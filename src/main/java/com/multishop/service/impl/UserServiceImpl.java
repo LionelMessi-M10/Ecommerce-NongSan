@@ -7,10 +7,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.multishop.converter.UserConverter;
 import com.multishop.entity.Cart;
 import com.multishop.entity.User;
 import com.multishop.exception.ResourceNotFoundException;
+import com.multishop.mapper.UserConverter;
 import com.multishop.model.request.UserRequest;
 import com.multishop.model.response.UserResponse;
 import com.multishop.repository.CartRepository;

@@ -1,4 +1,4 @@
-package com.multishop.converter;
+package com.multishop.mapper;
 
 import java.util.stream.Collectors;
 

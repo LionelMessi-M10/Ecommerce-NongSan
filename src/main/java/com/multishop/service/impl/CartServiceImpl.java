@@ -1,10 +1,11 @@
 package com.multishop.service.impl;
 
 import org.springframework.stereotype.Service;
-import com.multishop.converter.CartConverter;
+
 import com.multishop.entity.Cart;
 import com.multishop.entity.CartItem;
 import com.multishop.exception.ResourceNotFoundException;
+import com.multishop.mapper.CartConverter;
 import com.multishop.model.request.CartItemRequest;
 import com.multishop.model.response.CartResponse;
 import com.multishop.repository.CartItemRepository;
